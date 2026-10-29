@@ -1,0 +1,28 @@
+
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <header class="navbar" th:fragment="navbar">
+        <nav class="container navbar-inner">
+            <a th:href="@{/#home}"
+               class="navbar-logo"
+               th:text="${name}">Your Name</a>
+
+            <button class="navbar-toggle"
+                    type="button"
+                    aria-label="Open or close the menu">
+                &#9776;
+            </button>
+
+            <ul class="navbar-links">
+                <li><a th:href="@{/#home}">Home</a></li>
+                <li><a th:href="@{/#about}">About</a></li>
+                <li><a th:href="@{/#skills}">Skills</a></li>
+                <li><a th:href="@{/#projects}">Projects</a></li>
+                <li><a th:href="@{/#journey}">Journey</a></li>
+                <li><a th:href="@{/#contact}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+</body>
+</html>
