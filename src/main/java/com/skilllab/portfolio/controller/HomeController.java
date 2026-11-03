@@ -1,9 +1,16 @@
 
 package com.skilllab.portfolio.controller;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.skilllab.portfolio.model.Skill;
 
 @Controller
 public class HomeController {
@@ -31,6 +38,43 @@ public class HomeController {
         model.addAttribute("linkedin", "https://www.linkedin.com/in/ritu-maurya-5569bb375");
         model.addAttribute("resumeUrl", "https://drive.google.com/");
 
+
+        List<Skill> skills =new ArrayList<>();
+
+        skills.add(new Skill("HTML","Fronted"));
+        skills.add(new Skill("CSS","Fronted"));
+        skills.add(new Skill("JavaScript","Fronted"));
+        skills.add(new Skill("Thymeleaf","Fronted"));
+
+        skills.add(new Skill("Java","Backed"));
+        skills.add(new Skill("Spring Boot","Backed"));
+        skills.add(new Skill("Spring MVC","Backed"));
+
+
+
+        skills.add(new Skill("Git & Github","Tools"));
+        skills.add(new Skill("Intell","Fronted"));
+        skills.add(new Skill("CSS","Fronted"));
+         skills.add(new Skill("CSS","Fronted")); 
+
+          // ---- Group Skills by Category ----
+                Map<String, List<Skill>> skillsByCategory = new LinkedHashMap<>();
+
+                for (Skill skill : skills) {
+
+                        skillsByCategory.putIfAbsent(
+                                        skill.getCategory(),
+                                        new ArrayList<>());
+
+                        skillsByCategory.get(skill.getCategory()).add(skill);
+                }
+
+                // ---- Send Skills to HTML ----
+                model.addAttribute(
+                                "skillsByCategory",
+                                skillsByCategory);
+
+                // ---- Open index.html ----
         return "index";
     }
 }
